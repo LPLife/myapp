@@ -7,7 +7,10 @@
     "urlCheck": true,
     "es6": false,
     "postcss": false,
-    "minified": false
+    "minified": false,
+    "newFeature": true
   },
-  "compileType": "miniprogram"
+  "compileType": "miniprogram",
+  "qqappid": "1109761628",
+  "condition": {}
 }
