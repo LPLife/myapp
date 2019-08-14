@@ -2,10 +2,11 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import './index.less'
 import Welcome from '../welcome/index';
+import { AtButton,AtCountdown  } from 'taro-ui'
 export default class Index extends Component {
   constructor (props) {
     super(props)
-    this.state = { date: new Date(),isDisplay:false,loadingStatus:'loading',numbers :[1, 2, 3, 4, 5] }
+    this.state = { count: 0, date: new Date(),isDisplay:false,loadingStatus:'loading',numbers :[1, 2, 3, 4, 5] }
   }
   config = {
     navigationBarTitleText: '首页'
@@ -20,6 +21,8 @@ export default class Index extends Component {
       () => this.tick(),
       1000
     );
+    
+    // console.log(this.refs);
   }
   tick () {
     // this.setState({
@@ -30,11 +33,19 @@ export default class Index extends Component {
 
   componentDidShow () { }
 
-  componentDidHide = () => { }
+  componentDidHide = () => {
+
+
+   }
   handleClick(id){ 
     // Taro.navigateTo({
     //   url: '/pages/logs/index'
     // })
+    if(this.refs.wel !== undefined && this.refs.wel !== null){
+      this.refs.wel.str = 'fdgg33333333333';
+      console.log(this.refs.wel.state.str);
+    }
+
     if(this.state.isDisplay){
       this.setState({
         isDisplay: false,
@@ -47,8 +58,20 @@ export default class Index extends Component {
       })
     }
   }
+  setCount(count) {
+    this.setState({
+      count:count
+    })
+  }
+  onTimeUp () {
+    Taro.showToast({
+      title: '时间到',
+      icon: 'success',
+      duration: 2000
+    })
+  }
   render () {
-    let {isDisplay,loadingStatus,numbers} = this.state;
+    let {isDisplay,loadingStatus,numbers,count} = this.state;
     return (
       <View className='index'>
         <Text className='tip'>Hello world!</Text>
@@ -60,7 +83,7 @@ export default class Index extends Component {
       }}>确定</Button>
         <Button onClick={this.handleClick.bind(this,7)}>确定</Button>
          {
-           isDisplay && <Welcome></Welcome>
+           isDisplay && <Welcome a='dfffffffff' ref='wel'> 1234565gf</Welcome>
          }
          <View>
             {
@@ -76,8 +99,22 @@ export default class Index extends Component {
               return <View key={String(number)}>{number}</View>
             })
           }
+          {this.context}
       </View>
+      <AtButton type='primary'>按钮文案</AtButton>
+      <AtCountdown
+        isCard
+        minutes={1}
+        seconds={10}
+      />
+          <View className = "df">
+                  <View>民主</View>
+                  <View>和谐</View>
+                  <View>进步</View>
+          </View>
+  
       </View>
+
     )
   }
 }
