@@ -55,7 +55,7 @@ export default class Index extends Component {
       <View>
         <Button onClick={() => {
           Taro.navigateTo({
-            url: '/pages/logs/index'
+            url: '/pages/detail/index'
           })
       }}>确定</Button>
         <Button onClick={this.handleClick.bind(this,7)}>确定</Button>
